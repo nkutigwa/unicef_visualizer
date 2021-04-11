@@ -121,7 +121,7 @@ class _SignUpState extends State<SignUpScreen> {
             )),
         Padding(
           padding:
-          const EdgeInsets.only(left: 8.0, top: 32, right: 8, bottom: 8),
+              const EdgeInsets.only(left: 8.0, top: 32, right: 8, bottom: 8),
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: <Widget>[
@@ -134,13 +134,13 @@ class _SignUpState extends State<SignUpScreen> {
                     height: 170,
                     child: _image == null
                         ? Image.asset(
-                      'assets/images/placeholder.jpg',
-                      fit: BoxFit.cover,
-                    )
+                            'assets/images/placeholder.jpg',
+                            fit: BoxFit.cover,
+                          )
                         : Image.file(
-                      _image,
-                      fit: BoxFit.cover,
-                    ),
+                            _image,
+                            fit: BoxFit.cover,
+                          ),
                   ),
                 ),
               ),
@@ -160,7 +160,7 @@ class _SignUpState extends State<SignUpScreen> {
             constraints: BoxConstraints(minWidth: double.infinity),
             child: Padding(
                 padding:
-                const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
+                    const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
                 child: TextFormField(
                     validator: validateName,
                     onSaved: (String val) {
@@ -184,7 +184,7 @@ class _SignUpState extends State<SignUpScreen> {
             constraints: BoxConstraints(minWidth: double.infinity),
             child: Padding(
                 padding:
-                const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
+                    const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
                 child: TextFormField(
                     validator: validateName,
                     onSaved: (String val) {
@@ -208,7 +208,7 @@ class _SignUpState extends State<SignUpScreen> {
             constraints: BoxConstraints(minWidth: double.infinity),
             child: Padding(
                 padding:
-                const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
+                    const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
                 child: TextFormField(
                     keyboardType: TextInputType.phone,
                     textInputAction: TextInputAction.next,
@@ -233,7 +233,7 @@ class _SignUpState extends State<SignUpScreen> {
             constraints: BoxConstraints(minWidth: double.infinity),
             child: Padding(
                 padding:
-                const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
+                    const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
                 child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
@@ -345,7 +345,10 @@ class _SignUpState extends State<SignUpScreen> {
       try {
         auth.UserCredential result = await auth.FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-                email: email.trim(), password: password.trim());
+                email: email.trim(), password: password.trim())
+            .whenComplete(() => print('true'));
+        await result.user.sendEmailVerification();
+
         if (_image != null) {
           updateProgress('Uploading image, Please wait...');
           profilePicUrl = await FireStoreUtils()

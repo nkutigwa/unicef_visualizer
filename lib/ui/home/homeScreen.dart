@@ -10,6 +10,7 @@ import 'package:flutter_login_screen/model/user.dart';
 import 'package:flutter_login_screen/services/authenticate.dart';
 import 'package:flutter_login_screen/services/helper.dart';
 import 'package:flutter_login_screen/ui/auth/authScreen.dart';
+import 'package:flutter_login_screen/ui/login/confirmEmail.dart';
 
 class HomeScreen extends StatefulWidget {
   final User user;
@@ -26,6 +27,12 @@ class _HomeState extends State<HomeScreen> {
   final User user;
 
   _HomeState(this.user);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +56,7 @@ class _HomeState extends State<HomeScreen> {
                 style: TextStyle(color: Colors.black),
               ),
               leading: Transform.rotate(
-                angle: pi/1,
+                  angle: pi / 1,
                   child: Icon(Icons.exit_to_app, color: Colors.black)),
               onTap: () async {
                 user.active = false;
@@ -91,9 +98,14 @@ class _HomeState extends State<HomeScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Text(user.phoneNumber),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(user.userID),
+            GestureDetector(
+              onTap: () {
+                push(context, ConfirmEmail());
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(user.userID),
+              ),
             ),
           ],
         ),

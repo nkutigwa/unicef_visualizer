@@ -15,6 +15,8 @@ import 'package:flutter_login_screen/services/helper.dart';
 import 'package:flutter_login_screen/ui/home/homeScreen.dart';
 import 'package:http/http.dart' as http;
 
+//import 'confirmEmail.dart';
+
 final _fireStoreUtils = FireStoreUtils();
 
 class LoginScreen extends StatefulWidget {
@@ -116,8 +118,7 @@ class _LoginScreen extends State<LoginScreen> {
               ),
             ),
             Padding(
-              padding:
-                  const EdgeInsets.only(right: 40.0, left: 40.0, top: 40),
+              padding: const EdgeInsets.only(right: 40.0, left: 40.0, top: 40),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minWidth: double.infinity),
                 child: RaisedButton(
@@ -155,8 +156,7 @@ class _LoginScreen extends State<LoginScreen> {
                 child: RaisedButton.icon(
                   label: Text(
                     'Facebook Login',
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   icon: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -218,7 +218,9 @@ class _LoginScreen extends State<LoginScreen> {
       showProgress(context, 'Logging in, please wait...', false);
       User user = await loginWithUserNameAndPassword();
       if (user != null)
+//      if (auth.FirebaseAuth.instance.currentUser.emailVerified)
         pushAndRemoveUntil(context, HomeScreen(user: user), false);
+//        pushAndRemoveUntil(context, ConfirmEmail(), false);
     } else {
       setState(() {
         _validate = AutovalidateMode.onUserInteraction;
