@@ -10,7 +10,8 @@ import 'package:flutter_login_screen/model/user.dart';
 import 'package:flutter_login_screen/services/authenticate.dart';
 import 'package:flutter_login_screen/services/helper.dart';
 import 'package:flutter_login_screen/ui/auth/authScreen.dart';
-import 'package:flutter_login_screen/ui/login/confirmEmail.dart';
+import 'package:flutter_login_screen/ui/home/profileScreen.dart';
+//import 'package:flutter_login_screen/ui/login/confirmEmail.dart';
 
 class HomeScreen extends StatefulWidget {
   final User user;
@@ -28,6 +29,30 @@ class _HomeState extends State<HomeScreen> {
 
   _HomeState(this.user);
 
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+//  static List<Widget> _widgetOptions = <Widget>[
+//    Text(
+//      'Index 0: Dashboard',
+//      style: optionStyle,
+//    ),
+//    Text(
+//      'Index 1: Datatables',
+//      style: optionStyle,
+//    ),
+//
+//    Text(
+//      'Index 2: Profile',
+//      style: optionStyle,
+//    ),
+//  ];
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -36,7 +61,25 @@ class _HomeState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _widgetOptions = <Widget>[
+      Text(
+        'Index 0: Dashboard',
+        style: optionStyle,
+      ),
+      Text(
+        'Index 1: Datatables',
+        style: optionStyle,
+      ),
+      ProfileScreen(
+        user: user,
+      ),
+      Text(
+        'Index 2: Profile',
+        style: optionStyle,
+      ),
+    ];
     return Scaffold(
+//      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -80,35 +123,29 @@ class _HomeState extends State<HomeScreen> {
         centerTitle: true,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            displayCircleImage(user.profilePictureURL, 125, false),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(user.firstName),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(user.email),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(user.phoneNumber),
-            ),
-            GestureDetector(
-              onTap: () {
-                push(context, ConfirmEmail());
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(user.userID),
-              ),
-            ),
-          ],
-        ),
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart_outlined),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.table_chart_outlined),
+            label: 'Data',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor:
+            Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+        selectedIconTheme:
+            Theme.of(context).bottomNavigationBarTheme.selectedIconTheme,
+        onTap: _onItemTapped,
       ),
     );
   }

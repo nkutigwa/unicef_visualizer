@@ -12,6 +12,7 @@ import 'package:flutter_login_screen/ui/auth/authScreen.dart';
 import 'package:flutter_login_screen/ui/home/homeScreen.dart';
 import 'package:flutter_login_screen/ui/onBoarding/onBoardingScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'helpers/theme.dart';
 
 void main() => runApp(new MyApp());
 
@@ -82,7 +83,8 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
     }
 
     return MaterialApp(
-        theme: ThemeData(accentColor: Color(COLOR_PRIMARY)),
+//        theme: ThemeData(accentColor: Color(COLOR_PRIMARY)),
+        theme: themeData(context),
         debugShowCheckedModeBanner: false,
         color: Color(COLOR_PRIMARY),
         home: OnBoarding());

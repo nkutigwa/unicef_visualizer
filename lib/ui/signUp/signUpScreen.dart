@@ -11,6 +11,7 @@ import 'package:flutter_login_screen/services/authenticate.dart';
 import 'package:flutter_login_screen/services/helper.dart';
 import 'package:flutter_login_screen/ui/home/homeScreen.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 File _image;
 
@@ -24,7 +25,13 @@ class _SignUpState extends State<SignUpScreen> {
   TextEditingController _passwordController = new TextEditingController();
   GlobalKey<FormState> _key = new GlobalKey();
   AutovalidateMode _validate = AutovalidateMode.disabled;
-  String firstName, lastName, email, mobile, password, confirmPassword;
+  String firstName,
+      lastName,
+      email,
+      mobile,
+      password,
+      confirmPassword,
+      schoolName;
 
   @override
   Widget build(BuildContext context) {
@@ -313,6 +320,53 @@ class _SignUpState extends State<SignUpScreen> {
                     ))),
           ),
         ),
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: double.infinity,
+            maxHeight: 65.0,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
+            child: DropdownSearch<String>(
+              mode: Mode.MENU,
+              showSelectedItem: true,
+              items: [
+                "School",
+                "Marian",
+                "Ilboru (Disabled)",
+                "Temeke boys",
+                'St.Marys'
+              ],
+              dropdownSearchDecoration: InputDecoration(
+                  contentPadding:
+                      new EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  fillColor: Colors.white,
+                  hintText: 'Confirm Password',
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide:
+                          BorderSide(color: Color(COLOR_PRIMARY), width: 2.0)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  )),
+              validator: (String item) {
+                if (item == null || item == "School")
+                  return "Required field";
+                else if (item == "Brazil")
+                  return "Invalid item";
+                else
+                  return null;
+              },
+              hint: "School Name",
+              popupItemDisabled: (String s) => s.startsWith('I'),
+              onChanged: (value) {
+                schoolName = value;
+//                print(schoolName);
+              },
+//                selectedItem: "School"
+            ),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.only(right: 40.0, left: 40.0, top: 40.0),
           child: ConstrainedBox(
@@ -361,6 +415,7 @@ class _SignUpState extends State<SignUpScreen> {
             userID: result.user.uid,
             active: true,
             lastName: lastName,
+            schoolName: schoolName,
             profilePictureURL: profilePicUrl);
         await FireStoreUtils.firestore
             .collection(USERS)
