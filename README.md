@@ -1,4 +1,4 @@
-# Flutter Login Screen with Firebase Auth and Facebook Login
+# Unicef Visualizer 
 
 Jumpstart your Flutter app development with this pre-built Flutter starter kit. Don't reinvent the wheel by writing the boring boilerplate starter code. Jump straight into the action and focus strictly on your core app features, if you want a detailed guide on how you can connect your Flutter app to firebase, feel free to checkout our detailed guide:
 https://www.instaflutter.com/docs/documentation/firebase-integration/.
@@ -40,4 +40,10 @@ Instaflutter Onboarding is a fully functional app that provides Flutter develope
 * Loading States
 * Error Handling
 
-Coded with ❤️  by <a href="https://www.instaflutter.com">Instaflutter</a>.
+## How to run
+
+* Clone Repository `git clone`
+* Open in Android Studio or VSCode
+* Run `flutter pub get`
+* Run `flutter run`
+
