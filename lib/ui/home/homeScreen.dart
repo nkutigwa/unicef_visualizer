@@ -10,6 +10,7 @@ import 'package:flutter_login_screen/model/user.dart';
 import 'package:flutter_login_screen/services/authenticate.dart';
 import 'package:flutter_login_screen/services/helper.dart';
 import 'package:flutter_login_screen/ui/auth/authScreen.dart';
+import 'package:flutter_login_screen/ui/home/dashboardScreen.dart';
 import 'package:flutter_login_screen/ui/home/profileScreen.dart';
 //import 'package:flutter_login_screen/ui/login/confirmEmail.dart';
 
@@ -62,10 +63,11 @@ class _HomeState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _widgetOptions = <Widget>[
-      Text(
-        'Index 0: Dashboard',
-        style: optionStyle,
-      ),
+      DashboardScreen(),
+//      Text(
+//        'Index 0: Dashboard',
+//        style: optionStyle,
+//      ),
       Text(
         'Index 1: Datatables',
         style: optionStyle,
@@ -73,13 +75,13 @@ class _HomeState extends State<HomeScreen> {
       ProfileScreen(
         user: user,
       ),
-      Text(
-        'Index 2: Profile',
-        style: optionStyle,
-      ),
+//      Text(
+//        'Index 2: Profile',
+//        style: optionStyle,
+//      ),
     ];
     return Scaffold(
-//      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,

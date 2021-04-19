@@ -86,7 +86,7 @@ ThemeData themeData(BuildContext context) {
       ),
     ),
     textTheme: GoogleFonts.workSansTextTheme().copyWith(
-      headline1: GoogleFonts.workSans(
+      headline1: GoogleFonts.merriweather(
         color: kPrimaryLightColor,
         fontSize: 20,
         fontWeight: FontWeight.bold,
