@@ -1,15 +1,10 @@
-import 'dart:math';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
+//import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_login_screen/constants.dart';
-import 'package:flutter_login_screen/main.dart';
 import 'package:flutter_login_screen/model/user.dart';
-import 'package:flutter_login_screen/services/authenticate.dart';
-import 'package:flutter_login_screen/services/helper.dart';
-import 'package:flutter_login_screen/ui/auth/authScreen.dart';
+//import 'package:flutter_login_screen/services/authenticate.dart';
+//import 'package:flutter_login_screen/services/helper.dart';
+//import 'package:flutter_login_screen/ui/auth/authScreen.dart';
 import 'package:flutter_login_screen/ui/home/dashboardScreen.dart';
 import 'package:flutter_login_screen/ui/home/profileScreen.dart';
 //import 'package:flutter_login_screen/ui/login/confirmEmail.dart';
@@ -72,9 +67,10 @@ class _HomeState extends State<HomeScreen> {
         'Index 1: Datatables',
         style: optionStyle,
       ),
-      ProfileScreen(
-        user: user,
-      ),
+      PersonalInfoStream(),
+//      ProfileScreen(
+////        user: user,
+//      ),
 //      Text(
 //        'Index 2: Profile',
 //        style: optionStyle,
@@ -82,48 +78,6 @@ class _HomeState extends State<HomeScreen> {
     ];
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(color: Colors.white),
-              ),
-              decoration: BoxDecoration(
-                color: Color(COLOR_PRIMARY),
-              ),
-            ),
-            ListTile(
-              title: Text(
-                'Logout',
-                style: TextStyle(color: Colors.black),
-              ),
-              leading: Transform.rotate(
-                  angle: pi / 1,
-                  child: Icon(Icons.exit_to_app, color: Colors.black)),
-              onTap: () async {
-                user.active = false;
-                user.lastOnlineTimestamp = Timestamp.now();
-                FireStoreUtils.updateCurrentUser(user);
-                await auth.FirebaseAuth.instance.signOut();
-                MyAppState.currentUser = null;
-                pushAndRemoveUntil(context, AuthScreen(), false);
-              },
-            ),
-          ],
-        ),
-      ),
-      appBar: AppBar(
-        title: Text(
-          'Home',
-          style: TextStyle(color: Colors.black),
-        ),
-        iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

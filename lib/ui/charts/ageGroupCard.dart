@@ -156,37 +156,36 @@ class StackedBarChart extends StatelessWidget {
         ),
       ),
     ];
-
-//    final obeseData = [
-//      new OrdinalSales(
-//        '3-6',
-//        10,
-//        charts.Color.fromHex(
-//          code: "419893",
-//        ),
-//      ),
-//      new OrdinalSales(
-//        '6-10',
-//        15,
-//        charts.Color.fromHex(
-//          code: "419893",
-//        ),
-//      ),
-//      new OrdinalSales(
-//        '10-15',
-//        50,
-//        charts.Color.fromHex(
-//          code: "419893",
-//        ),
-//      ),
-//      new OrdinalSales(
-//        '15-18',
-//        45,
-//        charts.Color.fromHex(
-//          code: "419893",
-//        ),
-//      ),
-//    ];
+    final obeseData = [
+      new OrdinalSales(
+        '3-6',
+        10,
+        charts.Color.fromHex(
+          code: "#BD4F6C",
+        ),
+      ),
+      new OrdinalSales(
+        '6-10',
+        15,
+        charts.Color.fromHex(
+          code: "#BD4F6C",
+        ),
+      ),
+      new OrdinalSales(
+        '10-15',
+        50,
+        charts.Color.fromHex(
+          code: "#BD4F6C",
+        ),
+      ),
+      new OrdinalSales(
+        '15-18',
+        45,
+        charts.Color.fromHex(
+          code: "#BD4F6C",
+        ),
+      ),
+    ];
 
     return [
       new charts.Series<OrdinalSales, String>(
@@ -213,12 +212,13 @@ class StackedBarChart extends StatelessWidget {
         data: overweightData,
         colorFn: (OrdinalSales sales, _) => sales.color,
       ),
-//      new charts.Series<OrdinalSales, String>(
-//        id: 'Obese',
-//        domainFn: (OrdinalSales sales, _) => sales.ageGroup,
-//        measureFn: (OrdinalSales sales, _) => sales.number,
-//        data: obeseData,
-//      ),
+      new charts.Series<OrdinalSales, String>(
+        id: 'Obese',
+        domainFn: (OrdinalSales sales, _) => sales.ageGroup,
+        measureFn: (OrdinalSales sales, _) => sales.number,
+        colorFn: (OrdinalSales sales, _) => sales.color,
+        data: obeseData,
+      ),
     ];
   }
 }

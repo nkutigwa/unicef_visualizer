@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login_screen/ui/charts/ageGroupCard.dart';
 import 'package:flutter_login_screen/ui/charts/bmiStatusCard.dart';
 import 'package:flutter_login_screen/ui/charts/dashboardCard.dart';
+import 'package:flutter_login_screen/ui/charts/genderCard.dart';
+import 'package:flutter_login_screen/constants.dart';
+import 'package:flutter_login_screen/services/helper.dart';
+import 'package:flutter_login_screen/ui/home/addStudentScreen.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -21,9 +25,55 @@ class _DashboardScreenState extends State<DashboardScreen> {
           backgroundColor: Color(0xffFEBB00),
           onPressed: () {
             //Go to Add Student Screen
+            push(
+              context,
+              AddStudentPage(),
+            );
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                child: Text(
+                  'Drawer Header',
+                  style: TextStyle(color: Colors.white),
+                ),
+                decoration: BoxDecoration(
+                  color: Color(COLOR_PRIMARY),
+                ),
+              ),
+//              ListTile(
+//                title: Text(
+//                  'Logout',
+//                  style: TextStyle(color: Colors.black),
+//                ),
+//                leading: Transform.rotate(
+//                    angle: pi / 1,
+//                    child: Icon(Icons.exit_to_app, color: Colors.black)),
+//                onTap: () async {
+//                  user.active = false;
+//                  user.lastOnlineTimestamp = Timestamp.now();
+//                  FireStoreUtils.updateCurrentUser(user);
+//                  await auth.FirebaseAuth.instance.signOut();
+//                  MyAppState.currentUser = null;
+//                  pushAndRemoveUntil(context, AuthScreen(), false);
+//                },
+//              ),
+            ],
+          ),
+        ),
+        appBar: AppBar(
+          title: Text(
+            'Home',
+            style: TextStyle(color: Colors.black),
+          ),
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.white,
+          centerTitle: true,
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -76,7 +126,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   height: MediaQuery.of(context).size.height * 0.4,
                   width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.only(left: 4.0, right: 4.0, top: 4.0),
-                  child: AgeGroupCard())
+                  child: AgeGroupCard()),
+              Container(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.only(left: 4.0, right: 4.0, top: 4.0),
+                  child: GenderCard())
             ],
           ),
         ),

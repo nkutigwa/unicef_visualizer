@@ -97,44 +97,6 @@ class _BmiStatusCardState extends State<BmiStatusCard> {
                 ),
               ],
             ),
-//            Row(
-//              children: [
-//                Container(
-//                  height: 30.0,
-//                  width: 170.0,
-//                  child: ListTile(
-//                    leading: Icon(
-//                      Icons.bookmark_rounded,
-//                      color: Color(0xffD7816A),
-//                    ),
-//                    title: Text(
-//                      'Overweight',
-//                      style: Theme.of(context)
-//                          .textTheme
-//                          .subtitle1
-//                          .copyWith(fontSize: 10.0),
-//                    ),
-//                  ),
-//                ),
-//                Container(
-//                  height: 30.0,
-//                  width: 170.0,
-//                  child: ListTile(
-//                    leading: Icon(
-//                      Icons.bookmark_rounded,
-//                      color: Color(0xffBD4F6C),
-//                    ),
-//                    title: Text(
-//                      'Obese',
-//                      style: Theme.of(context)
-//                          .textTheme
-//                          .subtitle1
-//                          .copyWith(fontSize: 10.0),
-//                    ),
-//                  ),
-//                ),
-//              ],
-//            ),
           ],
         ),
       ),
